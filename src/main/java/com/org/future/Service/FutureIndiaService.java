@@ -12,5 +12,15 @@ public interface FutureIndiaService {
 	FutureIndia saveFutureDetails(FutureIndia futureIndia);
 
 	List<FutureIndia> findAllFutureDetails();
+	
+	FutureIndia findAllFutureDetailsById(int jobId);
 
+
+	List<FutureIndia> findAllFutureDetailsByName(String jobType);
+
+	FutureIndia updateFutureDetails(FutureIndia futureIndia);
+
+	void deleteUpdateDetails(FutureIndia futureIndia);
+
+	
 }
