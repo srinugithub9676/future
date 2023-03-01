@@ -13,6 +13,7 @@ public class FamilyFutureApplication extends SpringBootServletInitializer {
 	return application.sources(FamilyFutureApplication.class);
 	}
 
+
 	public static void main(String[] args) {
 		SpringApplication.run(FamilyFutureApplication.class, args);
 
