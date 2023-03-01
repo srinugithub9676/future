@@ -45,7 +45,7 @@ public class FutureIndiaController {
         System.out.println("sucessfully deleted.......");
 		}
 
-	@GetMapping("/findAlldetails")
+	@GetMapping(value= "/findAlldetails")
 	public ResponseEntity<FutureIndia> findAllFuture() {
 		List<FutureIndia> listfuture = futureIndiaService.findAllFutureDetails();
 		return new ResponseEntity(listfuture, HttpStatus.OK);
