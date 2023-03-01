@@ -8,6 +8,7 @@ public class FamilyFutureApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(FamilyFutureApplication.class, args);
+		System.out.println("hello welcome");
 	}
 
 }
