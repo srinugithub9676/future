@@ -10,6 +10,7 @@ public class FamilyFutureApplication {
 		SpringApplication.run(FamilyFutureApplication.class, args);
 		System.out.println("hello welcome");
 		System.out.println("hello welcome2");
+		System.out.println("hello welcome3");
 	}
 
 }
