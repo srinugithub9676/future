@@ -59,13 +59,13 @@ public class FutureIndiaController {
 	@GetMapping("/findById/{jobId}")
 	public ResponseEntity<FutureIndia> findByIdFuture(@PathVariable("jobId") int jobId) {
 		FutureIndia listfuture = futureIndiaService.findAllFutureDetailsById(jobId);
-		return new ResponseEntity(listfuture, HttpStatus.OK);
+		return new ResponseEntity<FutureIndia>(listfuture, HttpStatus.OK);
 	}
 
 	@GetMapping("/findByName/{jobType}")
-	public ResponseEntity<FutureIndia> findByNameFuture(@PathVariable("jobType") String jobType) {
+	public List<FutureIndia> findByNameFuture(@PathVariable("jobType") String jobType) {
 		List<FutureIndia> listfuture = futureIndiaService.findAllFutureDetailsByName(jobType);
-		return new ResponseEntity(listfuture, HttpStatus.OK);
+		return listfuture ;
 
 	}
 

@@ -1,11 +1,13 @@
 package com.org.future.ServiceImpl;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.org.future.Entity.FutureIndia;
+import com.org.future.Exeception.PleaseEnterCorrectNameException;
 import com.org.future.Repositories.FutureIndiaRepository;
 import com.org.future.Service.FutureIndiaService;
 
@@ -36,10 +38,19 @@ public class FutureIndiaServiceImpl implements FutureIndiaService {
 
 	@Override
 	public List<FutureIndia> findAllFutureDetailsByName(String jobType) {
+		
+		 if(jobType.isEmpty()||jobType.length()==0) { throw new
+		  PleaseEnterCorrectNameException(); }
+		 
 		List<FutureIndia> future = futureIndiaRepository.findByJobType(jobType);
+		/*
+		 * if(jobType.equals(future)) throw new PleaseEnterCorrectNameException();
+		 * 
+		 * else
+		 */
 		return future;
+	
 	}
-
 	@Override
 	public FutureIndia updateFutureDetails(FutureIndia futureIndia) {
 		return futureIndiaRepository.save(futureIndia);
