@@ -27,12 +27,14 @@ public class FutureIndiaServiceImpl implements FutureIndiaService {
 	public List<FutureIndia> findAllFutureDetails() {
 		// TODO Auto-generated method stub
 		List<FutureIndia> list = futureIndiaRepository.findAll();
+		System.out.println(list);
 		return list;
 	}
 
 	@Override
 	public FutureIndia findAllFutureDetailsById(int jobId) {
 		FutureIndia future = futureIndiaRepository.findByJobId(jobId);
+		System.out.println(future);
 		return future;
 	}
 
