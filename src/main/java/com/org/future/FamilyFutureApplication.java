@@ -18,6 +18,7 @@ public class FamilyFutureApplication extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {
 		SpringApplication.run(FamilyFutureApplication.class, args);
+		System.out.println("hello");
 
 	}
 
