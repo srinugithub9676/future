@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.org.future.Entity.FutureIndia;
+import com.org.future.Exeception.EmptyInputException;
 import com.org.future.Exeception.PleaseEnterCorrectNameException;
 import com.org.future.Repositories.FutureIndiaRepository;
 import com.org.future.Service.FutureIndiaService;
@@ -20,6 +21,10 @@ public class FutureIndiaServiceImpl implements FutureIndiaService {
 	@Override
 	public FutureIndia saveFutureDetails(FutureIndia futureIndia) {
 		// TODO Auto-generated method stub
+		if (futureIndia.getJobName().isEmpty() || futureIndia.getJobName().length() == 0) {
+			throw new EmptyInputException("600", "input is filed empty");
+		}
+
 		return futureIndiaRepository.save(futureIndia);
 	}
 
@@ -27,32 +32,30 @@ public class FutureIndiaServiceImpl implements FutureIndiaService {
 	public List<FutureIndia> findAllFutureDetails() {
 		// TODO Auto-generated method stub
 		List<FutureIndia> list = futureIndiaRepository.findAll();
+		if (list.isEmpty()) {
+			throw new EmptyInputException("600", "input is filed empty");
+		}
 		System.out.println(list);
 		return list;
 	}
 
 	@Override
 	public FutureIndia findAllFutureDetailsById(int jobId) {
-		FutureIndia future = futureIndiaRepository.findByJobId(jobId);
-		System.out.println(future);
-		return future;
+		return futureIndiaRepository.findById(jobId).get();
+
 	}
 
 	@Override
 	public List<FutureIndia> findAllFutureDetailsByName(String jobType) {
-		
-		 if(jobType.isEmpty()||jobType.length()==0) { throw new
-		  PleaseEnterCorrectNameException(); }
-		 
 		List<FutureIndia> future = futureIndiaRepository.findByJobType(jobType);
-		/*
-		 * if(jobType.equals(future)) throw new PleaseEnterCorrectNameException();
-		 * 
-		 * else
-		 */
+		if(future.isEmpty())
+		{
+			throw new PleaseEnterCorrectNameException();	
+		}
 		return future;
-	
+
 	}
+
 	@Override
 	public FutureIndia updateFutureDetails(FutureIndia futureIndia) {
 		return futureIndiaRepository.save(futureIndia);
@@ -63,7 +66,5 @@ public class FutureIndiaServiceImpl implements FutureIndiaService {
 		// TODO Auto-generated method stub
 		futureIndiaRepository.delete(futureIndia);
 	}
-
-	
 
 }

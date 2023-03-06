@@ -28,6 +28,11 @@ public class ControllerAdvise extends ResponseEntityExceptionHandler  {
 	 * ResponseEntity<>("PleseEnter correct name then only get data dataS"
 	 * ,HttpStatus.BAD_REQUEST); }
 	 */
+	@ExceptionHandler(EmptyInputException.class)
+	public ResponseEntity<String> handleEmptyInputException(EmptyInputException emptyInputException){
+		return new ResponseEntity<String>("given filed is empty plese look once",HttpStatus.BAD_REQUEST);
+		
+	}
 	@ExceptionHandler(PleaseEnterCorrectNameException.class)
 	public ResponseEntity<String> handllerPleaseEnterCorrectNameException(PleaseEnterCorrectNameException pleaseEnterCorrectNameException){
 		return new ResponseEntity<>("PleseEnter correct name then only get data data",HttpStatus.BAD_REQUEST);

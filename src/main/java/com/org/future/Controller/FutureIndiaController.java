@@ -33,31 +33,31 @@ public class FutureIndiaController {
 	@PostMapping("/savefuture")
 	public ResponseEntity<FutureIndia> saveFuture(@RequestBody FutureIndia futureIndia) {
 		FutureIndia future = futureIndiaService.saveFutureDetails(futureIndia);
-		return new ResponseEntity<>(future, HttpStatus.CREATED);
+		return new ResponseEntity<FutureIndia>(future, HttpStatus.CREATED);
 
 	}
 
 	@PutMapping("/updateFuture")
 	public ResponseEntity<FutureIndia> updateFuture(@RequestBody FutureIndia futureIndia) {
 		FutureIndia future = futureIndiaService.updateFutureDetails(futureIndia);
-		return new ResponseEntity<>(future, HttpStatus.NO_CONTENT);
+		return new ResponseEntity<>(future, HttpStatus.CREATED);
 
 	}
 	
 	@DeleteMapping("/deleteFuture")
-	public void deleteFuture(@RequestBody FutureIndia futureIndia) {
+	public ResponseEntity<Void> deleteFuture(@RequestBody FutureIndia futureIndia) {
         futureIndiaService.deleteUpdateDetails(futureIndia);
-        System.out.println("sucessfully deleted.......");
+        return new ResponseEntity<Void>(HttpStatus.ACCEPTED);
 		}
 
 	@GetMapping(value= "/findAlldetails")
-	public ResponseEntity<FutureIndia> findAllFuture() {
+	public ResponseEntity<List<FutureIndia>> findAllFuture() {
 		List<FutureIndia> listfuture = futureIndiaService.findAllFutureDetails();
-		return new ResponseEntity(listfuture, HttpStatus.OK);
+		return new ResponseEntity<List<FutureIndia>>(listfuture, HttpStatus.OK);
 	}
 
-	@GetMapping("/findById/{jobId}")
-	public ResponseEntity<FutureIndia> findByIdFuture(@PathVariable("jobId") int jobId) {
+	@GetMapping("/findById/{id}")
+	public ResponseEntity<FutureIndia> findByIdFuture(@PathVariable("id") int jobId) {
 		FutureIndia listfuture = futureIndiaService.findAllFutureDetailsById(jobId);
 		return new ResponseEntity<FutureIndia>(listfuture, HttpStatus.OK);
 	}
