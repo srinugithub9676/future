@@ -22,5 +22,6 @@ public interface FutureIndiaService {
 
 	void deleteUpdateDetails(FutureIndia futureIndia);
 
+
 	
 }

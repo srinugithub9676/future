@@ -1,11 +1,8 @@
 package com.org.future.ServiceImpl;
 
 import java.util.List;
-import java.util.NoSuchElementException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import com.org.future.Entity.FutureIndia;
 import com.org.future.Exeception.EmptyInputException;
 import com.org.future.Exeception.PleaseEnterCorrectNameException;
@@ -20,11 +17,9 @@ public class FutureIndiaServiceImpl implements FutureIndiaService {
 
 	@Override
 	public FutureIndia saveFutureDetails(FutureIndia futureIndia) {
-		// TODO Auto-generated method stub
 		if (futureIndia.getJobName().isEmpty() || futureIndia.getJobName().length() == 0) {
 			throw new EmptyInputException("600", "input is filed empty");
 		}
-
 		return futureIndiaRepository.save(futureIndia);
 	}
 
@@ -38,13 +33,11 @@ public class FutureIndiaServiceImpl implements FutureIndiaService {
 		System.out.println(list);
 		return list;
 	}
-
 	@Override
 	public FutureIndia findAllFutureDetailsById(int jobId) {
 		return futureIndiaRepository.findById(jobId).get();
-
 	}
-
+	
 	@Override
 	public List<FutureIndia> findAllFutureDetailsByName(String jobType) {
 		List<FutureIndia> future = futureIndiaRepository.findByJobType(jobType);
@@ -53,18 +46,15 @@ public class FutureIndiaServiceImpl implements FutureIndiaService {
 			throw new PleaseEnterCorrectNameException();	
 		}
 		return future;
-
 	}
-
 	@Override
 	public FutureIndia updateFutureDetails(FutureIndia futureIndia) {
 		return futureIndiaRepository.save(futureIndia);
 	}
-
 	@Override
 	public void deleteUpdateDetails(FutureIndia futureIndia) {
-		// TODO Auto-generated method stub
 		futureIndiaRepository.delete(futureIndia);
 	}
+	
 
 }
