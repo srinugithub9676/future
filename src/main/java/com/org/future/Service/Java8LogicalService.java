@@ -2,6 +2,7 @@ package com.org.future.Service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.springframework.stereotype.Service;
 
@@ -21,5 +22,9 @@ public interface Java8LogicalService {
 	List<FutureIndia> findAllDetails();
 
 	Map<Integer, FutureIndia> findAllConversionDeatils();
+
+	Set<FutureIndia> printDublicateRecords();
+
+	Set<Double> withoutDublicateRecords();
 
 }

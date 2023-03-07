@@ -1,7 +1,9 @@
 package com.org.future.ServiceImpl;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -57,5 +59,23 @@ public class Java8LogicalServiceImpl implements Java8LogicalService {
 	List<FutureIndia> list=java8LogicalRepository.findAll();
 	Map<Integer,FutureIndia> listToMap=list.stream().collect(Collectors.toMap(FutureIndia::getJobId, Function.identity()));
 		return listToMap;
+	}
+
+	@Override
+	public Set<FutureIndia> printDublicateRecords() {
+		Set<Double> set=new HashSet<Double>();
+		List<FutureIndia> list=java8LogicalRepository.findAll();
+		Set<FutureIndia> dublicates=list.stream().filter(s1->!set.add(s1.getSalary())).collect(Collectors.toSet());
+			
+		return dublicates;
+	}
+
+	@Override
+	public Set<Double> withoutDublicateRecords() {
+		Set<Double> set=new HashSet<Double>();
+		List<FutureIndia> list=java8LogicalRepository.findAll();
+		Set<FutureIndia> dublicates=list.stream().filter(s1->!set.add(s1.getSalary())).collect(Collectors.toSet());
+			System.out.println(dublicates);
+		return set;
 	}
 }

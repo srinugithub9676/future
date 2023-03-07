@@ -119,8 +119,20 @@ public class Java8LogicalController {
 	 * Function.identity()));
 	 * System.out.println("set to map convirsion"+setToMapConversion);
 	 */
-	
-	
 	}
-
+          @GetMapping("/onlyDublicates")
+          public Set<FutureIndia> printDublicates() {
+        	Set<FutureIndia>  dublictes= java8LogicalService.printDublicateRecords();
+        	  
+			return dublictes;
+		
+	}
+          @GetMapping("/withoutDublicates")
+          public Set<Double> withoutDublicates() {
+        	Set<Double>  dublictes= java8LogicalService.withoutDublicateRecords();
+        	  
+			return dublictes;
+		
+	}
+	
 }
