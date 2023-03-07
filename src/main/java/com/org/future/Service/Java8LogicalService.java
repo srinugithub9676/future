@@ -27,4 +27,6 @@ public interface Java8LogicalService {
 
 	Set<Double> withoutDublicateRecords();
 
+	Map<Character, Integer> stringOccurence();
+
 }
