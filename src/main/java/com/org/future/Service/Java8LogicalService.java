@@ -1,6 +1,7 @@
 package com.org.future.Service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -18,5 +19,7 @@ public interface Java8LogicalService {
 	double getAllCountSalaryValue(FutureIndia futureIndia);
 
 	List<FutureIndia> findAllDetails();
+
+	Map<Integer, FutureIndia> findAllConversionDeatils();
 
 }

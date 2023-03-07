@@ -1,6 +1,9 @@
 package com.org.future.ServiceImpl;
 
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -47,5 +50,12 @@ public class Java8LogicalServiceImpl implements Java8LogicalService {
 	public List<FutureIndia> findAllDetails() {
 		// TODO Auto-generated method stub
 		return java8LogicalRepository.findAll();
+	}
+
+	@Override
+	public Map<Integer, FutureIndia> findAllConversionDeatils() {
+	List<FutureIndia> list=java8LogicalRepository.findAll();
+	Map<Integer,FutureIndia> listToMap=list.stream().collect(Collectors.toMap(FutureIndia::getJobId, Function.identity()));
+		return listToMap;
 	}
 }
