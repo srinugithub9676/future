@@ -29,4 +29,14 @@ public interface Java8LogicalService {
 
 	Map<Character, Integer> stringOccurence();
 
+	List<FutureIndia> evenJobIdDetails();
+
+	List<FutureIndia> oddJobIdDetails();
+
+	Map<Integer, Set<FutureIndia>> groupingExampleDetails();
+
+	List<FutureIndia> particularRecordsDetails();
+
+	List<FutureIndia> sortparticularRecordsDetails();
+
 }

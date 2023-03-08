@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Component;
 import com.org.future.Entity.FutureIndia;
 import com.org.future.Repositories.Java8LogicalRepository;
 import com.org.future.Service.Java8LogicalService;
+
 
 @Component
 public class Java8LogicalServiceImpl implements Java8LogicalService {
@@ -108,6 +110,45 @@ public class Java8LogicalServiceImpl implements Java8LogicalService {
 		}
 		System.out.println(map);
 		return map;
+	}
+
+	@Override
+	public List<FutureIndia> evenJobIdDetails() {
+		List<FutureIndia> jobsids= java8LogicalRepository.findAll();
+	List<FutureIndia>even=jobsids.stream().filter(s1->s1.getJobId()%2==0).collect(Collectors.toList());
+		return even;
+	}
+
+	@Override
+	public List<FutureIndia> oddJobIdDetails() {
+		List<FutureIndia> jobsids= java8LogicalRepository.findAll();
+		List<FutureIndia>odd=jobsids.stream().filter(s1->s1.getJobId()%2!=0).collect(Collectors.toList());
+			return odd;
+	}
+
+	@Override
+	public Map<Integer, Set<FutureIndia>> groupingExampleDetails() {
+		List<FutureIndia> list= java8LogicalRepository.findAll();
+		//Map<Integer,List<FutureIndia>> group=list.stream().collect(Collectors.groupingBy(s1->s1.getAgeLimit()));
+		Map<Integer,Set<FutureIndia>> group=list.stream().collect(Collectors.groupingBy(emp->emp.getAgeLimit(),TreeMap::new,Collectors.toSet()));
+		return group;
+	}
+
+	@Override
+	public List<FutureIndia> particularRecordsDetails() {
+		List<FutureIndia> list= java8LogicalRepository.findAll();
+		List<FutureIndia>paticularRecords =list.stream().skip(1).limit(4).collect(Collectors.toList());
+		return paticularRecords;
+	}
+
+	@Override
+	public List<FutureIndia> sortparticularRecordsDetails() {
+		List<FutureIndia> list= java8LogicalRepository.findAll();
+		List<FutureIndia> sort1 = list.stream()
+				.sorted((s1, s2) -> s1.getJobId() < s2.getJobId() ? -1 : s1.getJobId() > s2.getJobId() ? 1 : 0).skip(2).limit(6)
+				.collect(Collectors.toList());
+		//System.out.println(sort1);
+		return sort1;
 	}
 
 }
