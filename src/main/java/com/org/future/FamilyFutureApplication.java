@@ -23,7 +23,7 @@ public class FamilyFutureApplication extends SpringBootServletInitializer {
 		FactoryNotification fn=new FactoryNotification();
 		Notification note=fn.getNotification("whatsups");
 		note.notification();
-		
+		System.out.println("hello");
 	}
 
 }
